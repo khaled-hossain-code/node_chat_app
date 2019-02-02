@@ -34,6 +34,7 @@ io.on('connection', (socket) => {
   socket.broadcast.emit('newMessage', generateMessage({from: 'admin', text: 'New user joined to chatroom'}))
 
   socket.on('disconnect', () => {
+    var user = users.removeUser(socket.id);
     console.log('User got disconnected');
   });
 
