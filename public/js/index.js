@@ -8,11 +8,11 @@ socket.on('disconnect', () => {
   console.log('disconnected to server');
 });
 
-socket.on('newEmail', (email) => {
-  console.log('New Email', email);
+socket.on('newMessage', (message) => {
+  console.log(message);
 });
 
-socket.emit('createEmail', {
-  to: 'jen@example.com',
-  text: 'Hey, this is new mail'
+socket.emit('createMessage', {
+  from: 'k',
+  text: 'hi'
 });

@@ -19,15 +19,9 @@ io.on('connection', (socket) => {
     console.log('User got disconnected');
   });
 
-  socket.on('createEmail', (newEmail) => {
-    console.log(newEmail);
+  socket.on('createMessage', (message) => {
+    io.emit('newMessage', message); //io emits to all sockets
   })
-
-  socket.emit('newEmail', {
-    from: 'mike@example.com',
-    text: 'whats up?',
-    createdAt: 123
-  });
 })
 
 server.listen(port, () => console.log(`Server is running on ${port}`))
