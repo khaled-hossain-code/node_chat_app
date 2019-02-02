@@ -15,4 +15,7 @@ socket.on('newMessage', (message) => {
 socket.emit('createMessage', {
   from: 'k',
   text: 'hi'
+}, function (confirmation) {
+  console.log(confirmation);
+  console.log('callback of acknowledgement');
 });

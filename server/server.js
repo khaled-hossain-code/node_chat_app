@@ -27,9 +27,12 @@ io.on('connection', (socket) => {
     console.log('User got disconnected');
   });
 
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     io.emit('newMessage', generateMessage(message)); //io emits to all sockets including itself
     // socket.broadcast.emit('newMessage', message); //io emits to all sockets excluding itself
+    callback({
+      confirm: 'yes'
+    });
   })
 })
 
