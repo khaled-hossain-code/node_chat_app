@@ -11,12 +11,22 @@ const port = process.env.port || 3000;
 const publicPath = path.join(__dirname, '../public');
 
 const {generateMessage} = require('./utils/message');
+const Users = require('./utils/users');
+const users = new Users();
 
 app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
   console.log('New User Connected');
+  //if user is not valid then disconnect the user
 
+  socket.on('survey', (params, callback) => {
+    
+    //check if the survey is valid for that user else return callback('Invalid survey')
+    users.addUser(socket.id, params.name, params.surveyID);
+
+
+  })
   // greeting from admin to user
   socket.emit('newMessage', generateMessage({from: 'admin', text: 'Welcome to chatroom'}))
 
